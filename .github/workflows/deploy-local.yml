@@ -1,0 +1,85 @@
+name: Deploy BusGo locally
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: busgo-local-deployment
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on:
+      - self-hosted
+      - windows
+      - x64
+    env:
+      BUSGO_SESSION_SECRET: ${{ secrets.BUSGO_SESSION_SECRET }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Check required tools
+        shell: powershell
+        run: |
+          $ErrorActionPreference = "Stop"
+          docker --version
+          terraform version
+
+      - name: Check application syntax
+        shell: powershell
+        run: |
+          $ErrorActionPreference = "Stop"
+          node --check server.js
+          node --check public/script.js
+
+      - name: Build Docker image
+        shell: powershell
+        run: docker build --tag busgo:local .
+
+      - name: Validate Terraform
+        shell: powershell
+        working-directory: terraform
+        run: |
+          $ErrorActionPreference = "Stop"
+          terraform init -input=false
+          terraform fmt -check
+          terraform validate
+
+      - name: Deploy with Terraform
+        shell: powershell
+        working-directory: terraform
+        run: |
+          $ErrorActionPreference = "Stop"
+          if ([string]::IsNullOrWhiteSpace($env:BUSGO_SESSION_SECRET)) {
+            throw "The BUSGO_SESSION_SECRET GitHub repository secret is required."
+          }
+          terraform apply -input=false -auto-approve `
+            -var="session_secret=$env:BUSGO_SESSION_SECRET"
+
+      - name: Smoke test BusGo
+        shell: powershell
+        run: |
+          $ErrorActionPreference = "Stop"
+          $url = "http://localhost:3000"
+          $ready = $false
+          for ($attempt = 1; $attempt -le 12; $attempt++) {
+            try {
+              $response = Invoke-WebRequest -Uri $url -UseBasicParsing -TimeoutSec 5
+              if ($response.StatusCode -eq 200) {
+                $ready = $true
+                break
+              }
+            } catch {
+              Start-Sleep -Seconds 5
+            }
+          }
+          if (-not $ready) {
+            docker logs busgo
+            throw "BusGo did not become ready at $url."
+          }
+          Write-Output "BusGo is running at $url"
