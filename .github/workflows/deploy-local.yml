@@ -28,7 +28,7 @@ jobs:
         run: |
           $ErrorActionPreference = "Stop"
           $paths = @(
-            "C:\Program Files\Docker\Docker\resources\bin",
+            "C:\Users\B MAdhav\AppData\Local\Programs\DockerDesktop\resources\bin",
             "C:\Users\B MAdhav\Downloads\terraform",
             "C:\Program Files\nodejs"
           )
