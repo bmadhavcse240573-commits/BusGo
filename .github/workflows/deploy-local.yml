@@ -74,6 +74,13 @@ jobs:
           if ([string]::IsNullOrWhiteSpace($env:BUSGO_SESSION_SECRET)) {
             throw "The BUSGO_SESSION_SECRET GitHub repository secret is required."
           }
+          $managedContainer = terraform state list | Select-String "^docker_container.busgo$"
+          if (-not $managedContainer) {
+            $existingContainer = docker ps -a --filter "name=^/busgo$" --format "{{.ID}}"
+            if ($existingContainer) {
+              terraform import -input=false docker_container.busgo $existingContainer
+            }
+          }
           terraform apply -input=false -auto-approve `
             -var="session_secret=$env:BUSGO_SESSION_SECRET"
 
