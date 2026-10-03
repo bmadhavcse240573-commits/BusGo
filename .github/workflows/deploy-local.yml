@@ -23,6 +23,22 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Configure Windows tool paths
+        shell: powershell -ExecutionPolicy Bypass -Command "& '{0}'"
+        run: |
+          $ErrorActionPreference = "Stop"
+          $paths = @(
+            "C:\Program Files\Docker\Docker\resources\bin",
+            "C:\Users\B MAdhav\Downloads\terraform",
+            "C:\Program Files\nodejs"
+          )
+          foreach ($path in $paths) {
+            if (-not (Test-Path $path)) {
+              throw "Required tool path does not exist: $path"
+            }
+            Add-Content -Path $env:GITHUB_PATH -Value $path
+          }
+
       - name: Check required tools
         shell: powershell -ExecutionPolicy Bypass -Command "& '{0}'"
         run: |
