@@ -24,25 +24,25 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check required tools
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass -Command "& '{0}'"
         run: |
           $ErrorActionPreference = "Stop"
           docker --version
           terraform version
 
       - name: Check application syntax
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass -Command "& '{0}'"
         run: |
           $ErrorActionPreference = "Stop"
           node --check server.js
           node --check public/script.js
 
       - name: Build Docker image
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass -Command "& '{0}'"
         run: docker build --tag busgo:local .
 
       - name: Validate Terraform
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass -Command "& '{0}'"
         working-directory: terraform
         run: |
           $ErrorActionPreference = "Stop"
@@ -51,7 +51,7 @@ jobs:
           terraform validate
 
       - name: Deploy with Terraform
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass -Command "& '{0}'"
         working-directory: terraform
         run: |
           $ErrorActionPreference = "Stop"
@@ -62,7 +62,7 @@ jobs:
             -var="session_secret=$env:BUSGO_SESSION_SECRET"
 
       - name: Smoke test BusGo
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass -Command "& '{0}'"
         run: |
           $ErrorActionPreference = "Stop"
           $url = "http://localhost:3000"
