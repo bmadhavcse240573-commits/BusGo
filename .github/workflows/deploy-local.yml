@@ -76,7 +76,7 @@ jobs:
           }
           $managedContainer = terraform state list | Select-String "^docker_container.busgo$"
           if (-not $managedContainer) {
-            $existingContainer = docker ps -a --filter "name=^/busgo$" --format "{{.ID}}"
+            $existingContainer = docker inspect busgo --format "{{.Id}}" 2>$null
             if ($existingContainer) {
               terraform import -input=false docker_container.busgo $existingContainer
             }
