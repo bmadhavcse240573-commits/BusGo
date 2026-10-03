@@ -9,13 +9,8 @@ terraform {
 
 provider "docker" {}
 
-resource "docker_image" "busgo" {
+data "docker_image" "busgo" {
   name = "busgo:local"
-
-  build {
-    context    = "${path.module}/.."
-    dockerfile = "Dockerfile"
-  }
 }
 
 resource "docker_volume" "busgo_data" {
@@ -24,7 +19,7 @@ resource "docker_volume" "busgo_data" {
 
 resource "docker_container" "busgo" {
   name  = "busgo"
-  image = docker_image.busgo.image_id
+  image = data.docker_image.busgo.id
 
   ports {
     internal = 3000

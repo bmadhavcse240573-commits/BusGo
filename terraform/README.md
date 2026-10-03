@@ -1,7 +1,7 @@
 # Run BusGo with Docker and Terraform
 
-This configuration builds the BusGo image and runs it as a local Docker
-container managed by Terraform.
+Build the BusGo image with Docker, then use this configuration to run it as a
+local Docker container managed by Terraform.
 
 ## Prerequisites
 
@@ -10,7 +10,13 @@ container managed by Terraform.
 
 ## Start BusGo
 
-From this directory:
+From the project root:
+
+```powershell
+docker build -t busgo:local .
+```
+
+Then from the `terraform` directory:
 
 ```powershell
 terraform init
