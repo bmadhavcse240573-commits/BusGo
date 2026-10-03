@@ -1,0 +1,27 @@
+<%- include('partials/header', { title, nav: 'booking' }) %>
+<section class="booking-success card">
+  <p class="eyebrow">Booking confirmed</p>
+  <h1>Your reservation is saved.</h1>
+  <p>Booking ID <strong><%= booking.id %></strong> has been persisted to the bookings file.</p>
+  <div class="summary-box">
+    <span>Route</span>
+    <strong><%= booking.route %></strong>
+  </div>
+  <div class="summary-box">
+    <span>Bus</span>
+    <strong><%= booking.busName %></strong>
+  </div>
+  <div class="summary-box">
+    <span>Seats</span>
+    <strong><%= booking.seats.join(', ') %></strong>
+  </div>
+  <div class="summary-box">
+    <span>Total fare</span>
+    <strong>Rs <%= booking.totalFare %></strong>
+  </div>
+  <div class="booking-success-actions">
+    <a class="button primary" href="/bookings">View My Bookings</a>
+    <a class="button secondary" href="/buses">Book Another Trip</a>
+  </div>
+</section>
+<%- include('partials/footer') %>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script defer src="/script.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-mark">B</div>
+      <div>
+        <p class="brand-name">BusGo</p>
+        <p class="brand-tag">Fast seat booking for every route</p>
+      </div>
+    </div>
+    <nav class="site-nav">
+      <a class="<%= nav === 'home' ? 'active' : '' %>" href="/">Home</a>
+      <a class="<%= nav === 'buses' ? 'active' : '' %>" href="/buses">Bus List</a>
+      <a class="<%= nav === 'seats' ? 'active' : '' %>" href="/seats">Seat Selection</a>
+      <a class="<%= nav === 'booking' ? 'active' : '' %>" href="/booking">Booking</a>
+      <% if (currentUser) { %>
+        <a class="<%= nav === 'bookings' ? 'active' : '' %>" href="/bookings">My Bookings</a>
+        <% if (currentUser.role === 'admin') { %>
+          <a class="<%= nav === 'admin' ? 'active' : '' %>" href="/admin/dashboard">Admin</a>
+        <% } %>
+        <form class="nav-form" method="post" action="/logout">
+          <button class="nav-button" type="submit">Logout</button>
+        </form>
+      <% } else { %>
+        <a class="<%= nav === 'register' ? 'active' : '' %>" href="/register">Register</a>
+        <a class="<%= nav === 'login' ? 'active' : '' %>" href="/login">Login</a>
+      <% } %>
+    </nav>
+  </header>
+  <main class="page-shell">
+    <% if (flash) { %>
+      <div class="flash"><%= flash %></div>
+    <% } %>

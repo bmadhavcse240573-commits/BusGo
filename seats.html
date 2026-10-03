@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BusGo - Seat Selection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-mark">B</div>
+      <div>
+        <p class="brand-name">BusGo</p>
+        <p class="brand-tag">Fast seat booking for every route</p>
+      </div>
+    </div>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="buses.html">Bus List</a>
+      <a class="active" href="seats.html">Seat Selection</a>
+      <a href="booking.html">Booking</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="section-heading">
+      <h1>Select your seats</h1>
+      <p>Tap seats to toggle them. The seat grid adapts to smaller screens without losing the layout.</p>
+    </section>
+
+    <section class="seat-layout">
+      <article class="seat-map card">
+        <div class="seat-legend">
+          <span><i class="swatch available"></i> Available</span>
+          <span><i class="swatch selected"></i> Selected</span>
+          <span><i class="swatch booked"></i> Booked</span>
+        </div>
+        <div class="seat-grid" id="seatGrid" aria-label="Seat map">
+          <button class="seat booked" type="button" aria-label="Seat 1 booked">1</button>
+          <button class="seat" type="button" aria-label="Seat 2 available">2</button>
+          <button class="seat" type="button" aria-label="Seat 3 available">3</button>
+          <button class="seat booked" type="button" aria-label="Seat 4 booked">4</button>
+          <button class="seat" type="button" aria-label="Seat 5 available">5</button>
+          <button class="seat" type="button" aria-label="Seat 6 available">6</button>
+          <button class="seat" type="button" aria-label="Seat 7 available">7</button>
+          <button class="seat booked" type="button" aria-label="Seat 8 booked">8</button>
+          <button class="seat" type="button" aria-label="Seat 9 available">9</button>
+          <button class="seat" type="button" aria-label="Seat 10 available">10</button>
+          <button class="seat" type="button" aria-label="Seat 11 available">11</button>
+          <button class="seat booked" type="button" aria-label="Seat 12 booked">12</button>
+          <button class="seat" type="button" aria-label="Seat 13 available">13</button>
+          <button class="seat" type="button" aria-label="Seat 14 available">14</button>
+          <button class="seat" type="button" aria-label="Seat 15 available">15</button>
+          <button class="seat booked" type="button" aria-label="Seat 16 booked">16</button>
+        </div>
+      </article>
+
+      <aside class="summary card">
+        <h2>Selection summary</h2>
+        <p>Choose one or more seats to continue.</p>
+        <div class="summary-box">
+          <span>Bus</span>
+          <strong>Swift Express</strong>
+        </div>
+        <div class="summary-box">
+          <span>Seats selected</span>
+          <strong id="selectedSeatCount">0</strong>
+        </div>
+        <div class="summary-box">
+          <span>Total fare</span>
+          <strong>Rs <span id="totalFare">0</span></strong>
+        </div>
+        <a class="button primary full-width" href="booking.html">Continue to Booking</a>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

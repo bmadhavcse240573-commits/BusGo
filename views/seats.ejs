@@ -1,0 +1,60 @@
+<%- include('partials/header', { title, nav: 'seats' }) %>
+<section class="section-heading">
+  <h1>Select your seats</h1>
+  <p>Tap seats to toggle them. The seat grid adapts to smaller screens without losing the layout.</p>
+</section>
+
+<section class="seat-layout">
+  <article class="seat-map card">
+    <div class="auth-meta">
+      <div>
+        <h2><%= bus.name %></h2>
+        <p><%= bus.from %> to <%= bus.to %> | <%= bus.departure %> to <%= bus.arrival %></p>
+      </div>
+      <span class="status-badge">Rs <%= bus.fare %> per seat</span>
+    </div>
+    <div class="seat-legend">
+      <span><i class="swatch available"></i> Available</span>
+      <span><i class="swatch selected"></i> Selected</span>
+      <span><i class="swatch booked"></i> Booked</span>
+    </div>
+    <form id="seatSelectionForm" class="seat-selection-form" method="post" action="/booking/preview">
+      <input type="hidden" name="busId" value="<%= bus.id %>">
+      <input type="hidden" id="selectedSeatsInput" name="seats">
+      <input type="hidden" id="seatCountInput" name="seatCount">
+      <input type="hidden" id="bookingFareInput" name="fareTotal">
+      <div class="seat-grid" id="seatGrid" data-fare="<%= bus.fare %>" aria-label="Seat map">
+        <button class="seat booked" type="button" aria-label="Seat 1 booked" data-seat="1">1</button>
+        <button class="seat" type="button" aria-label="Seat 2 available" data-seat="2">2</button>
+        <button class="seat" type="button" aria-label="Seat 3 available" data-seat="3">3</button>
+        <button class="seat booked" type="button" aria-label="Seat 4 booked" data-seat="4">4</button>
+        <button class="seat" type="button" aria-label="Seat 5 available" data-seat="5">5</button>
+        <button class="seat" type="button" aria-label="Seat 6 available" data-seat="6">6</button>
+        <button class="seat" type="button" aria-label="Seat 7 available" data-seat="7">7</button>
+        <button class="seat booked" type="button" aria-label="Seat 8 booked" data-seat="8">8</button>
+        <button class="seat" type="button" aria-label="Seat 9 available" data-seat="9">9</button>
+        <button class="seat" type="button" aria-label="Seat 10 available" data-seat="10">10</button>
+        <button class="seat" type="button" aria-label="Seat 11 available" data-seat="11">11</button>
+        <button class="seat booked" type="button" aria-label="Seat 12 booked" data-seat="12">12</button>
+        <button class="seat" type="button" aria-label="Seat 13 available" data-seat="13">13</button>
+        <button class="seat" type="button" aria-label="Seat 14 available" data-seat="14">14</button>
+        <button class="seat" type="button" aria-label="Seat 15 available" data-seat="15">15</button>
+        <button class="seat booked" type="button" aria-label="Seat 16 booked" data-seat="16">16</button>
+      </div>
+      <div class="hero-actions">
+        <button class="button primary" type="submit">Continue to Booking</button>
+        <a class="button secondary" href="/buses">Back to Buses</a>
+      </div>
+    </form>
+  </article>
+
+  <aside class="summary card">
+    <h2>Selection summary</h2>
+    <p>Choose one or more seats to continue.</p>
+    <div class="summary-box"><span>Bus</span><strong><%= bus.name %></strong></div>
+    <div class="summary-box"><span>Seats selected</span><strong id="selectedSeatCount">0</strong></div>
+    <div class="summary-box"><span>Total fare</span><strong>Rs <span id="totalFare">0</span></strong></div>
+    <a class="button secondary full-width" href="/booking">Go to booking</a>
+  </aside>
+</section>
+<%- include('partials/footer') %>

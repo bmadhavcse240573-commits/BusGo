@@ -1,0 +1,25 @@
+<%- include('../partials/header', { title, nav: 'admin' }) %>
+<section class="section-heading">
+  <h1>All bookings</h1>
+  <p>Review every saved reservation across users.</p>
+</section>
+
+<section class="bookings-grid">
+  <article class="card bookings-panel">
+    <h2>Reservation log</h2>
+    <% if (bookings.length === 0) { %>
+      <div class="empty-state"><p>No bookings saved yet.</p></div>
+    <% } else { %>
+      <% bookings.forEach((booking) => { %>
+        <div class="booking-list-item">
+          <strong><%= booking.busName %> | <%= booking.route %></strong>
+          <p>Passenger: <%= booking.passengerName %></p>
+          <p>User: <%= booking.userEmail %></p>
+          <p>Seats: <%= booking.seats.join(', ') %></p>
+          <p>Total: Rs <%= booking.totalFare %></p>
+        </div>
+      <% }) %>
+    <% } %>
+  </article>
+</section>
+<%- include('../partials/footer') %>

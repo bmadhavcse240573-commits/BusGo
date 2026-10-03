@@ -1,0 +1,35 @@
+<%- include('../partials/header', { title, nav: 'admin' }) %>
+<section class="section-heading">
+  <h1>Admin dashboard</h1>
+  <p>Manage buses and review the reservation system from one place.</p>
+</section>
+
+<section class="feature-grid">
+  <article class="info-card card">
+    <h3>Buses</h3>
+    <p><strong><%= summary.busCount %></strong> buses are currently configured.</p>
+  </article>
+  <article class="info-card card">
+    <h3>Bookings</h3>
+    <p><strong><%= summary.bookingCount %></strong> bookings have been saved.</p>
+  </article>
+  <article class="info-card card">
+    <h3>Users</h3>
+    <p><strong><%= summary.userCount %></strong> user accounts exist in the system.</p>
+  </article>
+</section>
+
+<section class="feature-grid">
+  <article class="info-card card">
+    <h3>Available seats</h3>
+    <p><strong><%= summary.seatCount %></strong> seats are currently available across all buses.</p>
+  </article>
+  <article class="info-card card">
+    <h3>Actions</h3>
+    <div class="hero-actions">
+      <a class="button primary" href="/admin/buses">Manage Buses</a>
+      <a class="button secondary" href="/admin/bookings">View All Bookings</a>
+    </div>
+  </article>
+</section>
+<%- include('../partials/footer') %>

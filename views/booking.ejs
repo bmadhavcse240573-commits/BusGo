@@ -1,0 +1,54 @@
+<%- include('partials/header', { title, nav: 'booking' }) %>
+<section class="section-heading">
+  <h1>Booking details</h1>
+  <p>Review your journey and passenger details before confirming the reservation.</p>
+</section>
+
+<section class="booking-grid">
+  <form class="card booking-form" method="post" action="/bookings">
+    <h2>Passenger information</h2>
+    <div class="form-grid">
+      <div>
+        <label for="name">Full name</label>
+        <input id="name" name="name" type="text" placeholder="Enter passenger name" required>
+      </div>
+      <div>
+        <label for="phone">Phone number</label>
+        <input id="phone" name="phone" type="tel" placeholder="Enter mobile number" required>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="Enter email address" required>
+      </div>
+      <div>
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender">
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    <label for="note">Special requests</label>
+    <textarea id="note" name="note" rows="4" placeholder="Any accessibility or travel request"></textarea>
+    <button class="button primary full-width" type="submit">Confirm Booking</button>
+  </form>
+
+  <aside class="card booking-summary">
+    <h2>Trip summary</h2>
+    <div class="summary-box"><span>Route</span><strong><%= bookingDraft.route %></strong></div>
+    <div class="summary-box"><span>Bus</span><strong><%= bookingDraft.busName %></strong></div>
+    <div class="summary-box"><span>Seats</span><strong><%= bookingDraft.seats.join(', ') %></strong></div>
+    <div class="summary-box"><span>Amount</span><strong>Rs <%= bookingDraft.seats.length * bookingDraft.fare %></strong></div>
+    <p>Log in before confirming. Your final booking is saved to the bookings file.</p>
+  </aside>
+</section>
+
+<section class="bookings-grid">
+  <aside class="bookings-panel card">
+    <h2>My bookings</h2>
+    <p>Open this page to see your saved reservations after confirmation.</p>
+    <a class="button secondary" href="/bookings">View my bookings</a>
+  </aside>
+</section>
+<%- include('partials/footer') %>

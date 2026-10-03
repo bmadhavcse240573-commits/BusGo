@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BusGo - Booking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-mark">B</div>
+      <div>
+        <p class="brand-name">BusGo</p>
+        <p class="brand-tag">Fast seat booking for every route</p>
+      </div>
+    </div>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="buses.html">Bus List</a>
+      <a href="seats.html">Seat Selection</a>
+      <a class="active" href="booking.html">Booking</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="section-heading">
+      <h1>Booking details</h1>
+      <p>Review your journey and passenger details before confirming the reservation.</p>
+    </section>
+
+    <section class="booking-grid">
+      <form class="card booking-form">
+        <h2>Passenger information</h2>
+        <div class="form-grid">
+          <div>
+            <label for="name">Full name</label>
+            <input id="name" type="text" placeholder="Enter passenger name">
+          </div>
+          <div>
+            <label for="phone">Phone number</label>
+            <input id="phone" type="tel" placeholder="Enter mobile number">
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="Enter email address">
+          </div>
+          <div>
+            <label for="gender">Gender</label>
+            <select id="gender">
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <label for="note">Special requests</label>
+        <textarea id="note" rows="4" placeholder="Any accessibility or travel request"></textarea>
+      </form>
+
+      <aside class="card booking-summary">
+        <h2>Trip summary</h2>
+        <div class="summary-box">
+          <span>Route</span>
+          <strong>Chennai to Bangalore</strong>
+        </div>
+        <div class="summary-box">
+          <span>Bus</span>
+          <strong>Swift Express</strong>
+        </div>
+        <div class="summary-box">
+          <span>Seats</span>
+          <strong>2, 3</strong>
+        </div>
+        <div class="summary-box">
+          <span>Amount</span>
+          <strong>Rs 1798</strong>
+        </div>
+        <button class="button primary full-width" type="button">Confirm Booking</button>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

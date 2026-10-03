@@ -1,0 +1,48 @@
+<%- include('../partials/header', { title, nav: 'admin' }) %>
+<section class="section-heading">
+  <h1>Manage buses</h1>
+  <p>Create, update, or remove buses and seat inventory from the persistent bus store.</p>
+</section>
+
+<section class="booking-grid">
+  <form class="card booking-form" method="post" action="/admin/buses">
+    <h2>Add new bus</h2>
+    <div class="form-grid">
+      <div><label for="name">Bus name</label><input id="name" name="name" type="text" required></div>
+      <div><label for="type">Type</label><input id="type" name="type" type="text" placeholder="AC Sleeper" required></div>
+      <div><label for="from">From</label><input id="from" name="from" type="text" required></div>
+      <div><label for="to">To</label><input id="to" name="to" type="text" required></div>
+      <div><label for="departure">Departure</label><input id="departure" name="departure" type="text" placeholder="08:30 PM" required></div>
+      <div><label for="arrival">Arrival</label><input id="arrival" name="arrival" type="text" placeholder="05:15 AM" required></div>
+      <div><label for="seatsLeft">Seats left</label><input id="seatsLeft" name="seatsLeft" type="number" min="0" required></div>
+      <div><label for="fare">Fare</label><input id="fare" name="fare" type="number" min="0" required></div>
+    </div>
+    <button class="button primary full-width" type="submit">Create Bus</button>
+  </form>
+
+  <aside class="bookings-panel card">
+    <h2>Current buses</h2>
+    <% buses.forEach((bus) => { %>
+      <form class="booking-list-item" method="post" action="/admin/buses/<%= bus.id %>">
+        <strong><%= bus.name %></strong>
+        <div class="form-grid">
+          <div><label>Bus name</label><input name="name" type="text" value="<%= bus.name %>"></div>
+          <div><label>Type</label><input name="type" type="text" value="<%= bus.type %>"></div>
+          <div><label>From</label><input name="from" type="text" value="<%= bus.from %>"></div>
+          <div><label>To</label><input name="to" type="text" value="<%= bus.to %>"></div>
+          <div><label>Departure</label><input name="departure" type="text" value="<%= bus.departure %>"></div>
+          <div><label>Arrival</label><input name="arrival" type="text" value="<%= bus.arrival %>"></div>
+          <div><label>Seats left</label><input name="seatsLeft" type="number" min="0" value="<%= bus.seatsLeft %>"></div>
+          <div><label>Fare</label><input name="fare" type="number" min="0" value="<%= bus.fare %>"></div>
+        </div>
+        <div class="hero-actions">
+          <button class="button primary" type="submit">Save</button>
+        </div>
+      </form>
+      <form method="post" action="/admin/buses/<%= bus.id %>/delete">
+        <button class="button secondary full-width" type="submit">Delete <%= bus.name %></button>
+      </form>
+    <% }) %>
+  </aside>
+</section>
+<%- include('../partials/footer') %>

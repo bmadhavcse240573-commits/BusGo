@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BusGo - Bus List</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-mark">B</div>
+      <div>
+        <p class="brand-name">BusGo</p>
+        <p class="brand-tag">Fast seat booking for every route</p>
+      </div>
+    </div>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a class="active" href="buses.html">Bus List</a>
+      <a href="seats.html">Seat Selection</a>
+      <a href="booking.html">Booking</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="section-heading">
+      <h1>Available buses</h1>
+      <p>Compare timings, type, and fare across multiple routes before selecting a seat.</p>
+    </section>
+
+    <section class="filters card">
+      <div>
+        <label for="from">From</label>
+        <input id="from" type="text" value="Chennai">
+      </div>
+      <div>
+        <label for="to">To</label>
+        <input id="to" type="text" value="Bangalore">
+      </div>
+      <div>
+        <label for="date">Date</label>
+        <input id="date" type="date" value="2026-05-22">
+      </div>
+      <div class="filter-action">
+        <a class="button primary" href="seats.html">Search</a>
+      </div>
+    </section>
+
+    <section class="bus-grid">
+      <article class="bus-card card">
+        <div class="bus-top">
+          <h2>Swift Express</h2>
+          <span class="badge">AC Sleeper</span>
+        </div>
+        <div class="bus-details">
+          <p><strong>Departure:</strong> 08:30 PM</p>
+          <p><strong>Arrival:</strong> 05:15 AM</p>
+          <p><strong>Seats left:</strong> 12</p>
+          <p><strong>Fare:</strong> Rs 899</p>
+        </div>
+        <a class="button secondary" href="seats.html">Select Seats</a>
+      </article>
+      <article class="bus-card card">
+        <div class="bus-top">
+          <h2>Night Rider</h2>
+          <span class="badge">Seater</span>
+        </div>
+        <div class="bus-details">
+          <p><strong>Departure:</strong> 09:45 PM</p>
+          <p><strong>Arrival:</strong> 06:30 AM</p>
+          <p><strong>Seats left:</strong> 18</p>
+          <p><strong>Fare:</strong> Rs 649</p>
+        </div>
+        <a class="button secondary" href="seats.html">Select Seats</a>
+      </article>
+      <article class="bus-card card">
+        <div class="bus-top">
+          <h2>Route Prime</h2>
+          <span class="badge">Luxury</span>
+        </div>
+        <div class="bus-details">
+          <p><strong>Departure:</strong> 11:00 PM</p>
+          <p><strong>Arrival:</strong> 07:20 AM</p>
+          <p><strong>Seats left:</strong> 9</p>
+          <p><strong>Fare:</strong> Rs 1099</p>
+        </div>
+        <a class="button secondary" href="seats.html">Select Seats</a>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

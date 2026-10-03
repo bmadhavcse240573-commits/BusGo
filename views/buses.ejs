@@ -1,0 +1,42 @@
+<%- include('partials/header', { title, nav: 'buses' }) %>
+<section class="section-heading">
+  <h1>Available buses</h1>
+  <p>Compare timings, type, and fare across multiple routes before selecting a seat.</p>
+</section>
+
+<section class="filters card">
+  <div>
+    <label for="from">From</label>
+    <input id="from" type="text" value="<%= query.from %>">
+  </div>
+  <div>
+    <label for="to">To</label>
+    <input id="to" type="text" value="<%= query.to %>">
+  </div>
+  <div>
+    <label for="date">Date</label>
+    <input id="date" type="date" value="<%= query.date %>">
+  </div>
+  <div class="filter-action">
+    <a class="button primary" href="/seats">Search</a>
+  </div>
+</section>
+
+<section class="bus-grid">
+  <% buses.forEach((bus) => { %>
+    <article class="bus-card card">
+      <div class="bus-top">
+        <h2><%= bus.name %></h2>
+        <span class="badge"><%= bus.type %></span>
+      </div>
+      <div class="bus-details">
+        <p><strong>Departure:</strong> <%= bus.departure %></p>
+        <p><strong>Arrival:</strong> <%= bus.arrival %></p>
+        <p><strong>Seats left:</strong> <%= bus.seatsLeft %></p>
+        <p><strong>Fare:</strong> Rs <%= bus.fare %></p>
+      </div>
+      <a class="button secondary" href="/seats?busId=<%= bus.id %>">Select Seats</a>
+    </article>
+  <% }) %>
+</section>
+<%- include('partials/footer') %>
